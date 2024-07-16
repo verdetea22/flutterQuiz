@@ -1,5 +1,7 @@
 import 'package:adv_basics/models/quiz_question.dart';
 
+// FIRST ANSWERS ARE THE CORRECT ONES
+
 const questions = [
   QuizQuestion(
     'What are the main building blocks of Flutter UIs?',

@@ -18,21 +18,26 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
 
     return SizedBox(
       width: double.infinity, //wide as possible
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion.text, 
-            style: TextStyle(
-              color: Colors.amber
+      child: Container(
+        margin: const EdgeInsets.all(40), //padding of answer buttons
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.text, 
+              style: const TextStyle(
+                color: Colors.amber
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 30),
-          // ... adds multiple individual values to already created lists [[1,2,3],4] -> [1,2,3,4]
-          ...currentQuestion.answers.map((answer){ //map() yields an Iterable (list)
-            return AnswerButton(answerText: answer, onTap:() {});
-          })
-       ],
+            const SizedBox(height: 30),
+            // ... adds multiple individual values to already created lists [[1,2,3],4] -> [1,2,3,4]
+            ...currentQuestion.getShuffledAnswers().map((answer){ //map() yields an Iterable (list)
+              return AnswerButton(answerText: answer, onTap:() {});
+            })
+         ],
+        ),
       ),
     );
   }
