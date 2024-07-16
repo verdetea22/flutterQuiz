@@ -13,6 +13,13 @@ class QuestionsScreen extends StatefulWidget{
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen>{
+  var currentQuestionIndex = 0; 
+
+  void answerQuestion() {
+    currentQuestionIndex++;
+  }
+
+  @override
   Widget build(context){
     final currentQuestion = questions[0];
 
