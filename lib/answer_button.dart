@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class AnswerButton extends StatelessWidget{
   const AnswerButton({
     super.key,
@@ -25,7 +26,7 @@ class AnswerButton extends StatelessWidget{
           borderRadius: BorderRadius.circular(40)
           ),
         ),
-      child: Text(answerText),
+      child: Text(answerText, textAlign: TextAlign.center),
     );
   }
 }
