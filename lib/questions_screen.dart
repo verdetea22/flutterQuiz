@@ -7,7 +7,8 @@ import 'package:adv_basics/data/questions.dart';
 class QuestionsScreen extends StatefulWidget{
   const QuestionsScreen({
     super.key, 
-    required this.onSelectAnswer});
+    required this.onSelectAnswer
+    });
 
   final void Function(String answer) onSelectAnswer;
 
@@ -22,7 +23,8 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
 
   void answerQuestion(String selectedAnswers) {
     widget.onSelectAnswer(selectedAnswers);
-
+    // currentQuestionIndex = currentQuestionIndex + 1;
+    // currentQuestionIndex += 1;
     setState((){
       currentQuestionIndex++; //needs to iterate through questions, then stop once exhausted
     });
@@ -47,6 +49,7 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             const SizedBox(height: 30),
             // ... adds multiple individual values to already created lists [[1,2,3],4] -> [1,2,3,4]

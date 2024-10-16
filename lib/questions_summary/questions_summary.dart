@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:adv_basics/questions_summary/summary_item.dart';
+
 class QuestionsSummary extends StatelessWidget {
   //accept and set summary data
   const QuestionsSummary(this.summaryData, {super.key});
@@ -17,25 +19,11 @@ class QuestionsSummary extends StatelessWidget {
         child: Column(
           children: summaryData.map(
             (data) {
-              return Row(children: [
-                //question index + 1 - index is object, needs to be casted as int, then returned as string
-                Text(((data['question_index'] as int) + 1).toString()), 
-                Expanded( //fixes overflow, can only be as tall or wide as the screens
-                  child: Column(
-                    children: [
-                      Text(data['question'] as String),
-                      const SizedBox(
-                        height: 5,
-                        ),
-                    Text(data['user_answer'] as String),
-                    Text(data['correct_answer'] as String),
-                  ],),
-                ),
-              ],);
+              return SummaryItem(data);
             },
-          ).toList(), //iterable object needed formatting (map->list)
+          ).toList(),
         ),
       ),
-    ); 
+    );
   }
 }
