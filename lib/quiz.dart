@@ -5,7 +5,7 @@ import 'package:adv_basics/questions_screen.dart';
 import 'package:adv_basics/data/questions.dart';
 import 'package:adv_basics/results_screen.dart';
 
-class Quiz extends StatefulWidget{
+class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
   @override
@@ -14,21 +14,20 @@ class Quiz extends StatefulWidget{
   }
 }
 
-// _ for private classes
-class _QuizState extends State<Quiz>{
-  final List<String> _selectedAnswers = [];
+class _QuizState extends State<Quiz> {
+  List<String> _selectedAnswers = [];
   var _activeScreen = 'start-screen';
 
   void _switchScreen() {
-    setState((){
+    setState(() {
       _activeScreen = 'questions-screen';
     });
   }
 
-  void _chooseAnswer(String answer){
+  void _chooseAnswer(String answer) {
     _selectedAnswers.add(answer);
 
-    if (_selectedAnswers.length == questions.length){ //once there is an answer for each question, reset selected ans list and bring to start
+    if (_selectedAnswers.length == questions.length) { //once there is an answer for each question, reset selected ans list and bring to start
       setState(() {
         _activeScreen = 'results-screen';
       });
@@ -37,38 +36,40 @@ class _QuizState extends State<Quiz>{
 
   void restartQuiz() {
     setState(() {
+      _selectedAnswers = [];
       _activeScreen = 'questions-screen';
     });
   }
 
   @override
-  Widget build( context) {
+  Widget build(context) {
     Widget screenWidget = StartScreen(_switchScreen);
 
     if (_activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
         onSelectAnswer: _chooseAnswer,
-        );
+      );
     }
 
-    if (_activeScreen == 'results-screen'){
+    if (_activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
         chosenAnswers: _selectedAnswers,
-        onRestart: restartQuiz,  
-      ); //Lists
+        onRestart: restartQuiz,
+      );
     }
 
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(gradient: LinearGradient(
-            colors: [
-              Colors.green, 
-              Colors.white,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-           ),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 24, 78, 2),
+                Color.fromARGB(255, 192, 241, 192),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
           child: screenWidget,
         ),
